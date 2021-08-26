@@ -92,9 +92,10 @@ GameObject:
   - component: {fileID: 1089519739532913676}
   - component: {fileID: 1089519739532913675}
   - component: {fileID: 6870158018242697561}
+  - component: {fileID: 3740629363867943198}
   m_Layer: 0
   m_Name: EnemyStrong
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,11 +140,25 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089519739532913674}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.0767064, y: 2.3306155, z: 0.31019893}
   m_Center: {x: -0.013198137, y: 0.87977695, z: -0.12025829}
+--- !u!114 &3740629363867943198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089519739532913674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74869d1b4eb4a044d847621ee4796ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  enemiesController: {fileID: 4995104799286358526, guid: c4723ad217c137247a08b0249561c86f, type: 3}
 --- !u!1001 &751141451219189156
 PrefabInstance:
   m_ObjectHideFlags: 0

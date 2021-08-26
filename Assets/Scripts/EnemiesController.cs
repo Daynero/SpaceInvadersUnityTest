@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public class EnemiesSpawn : MonoBehaviour
+public class EnemiesController : MonoBehaviour
 {
+    [Header("Spawn Settings")]
     public GameObject[] prefabs;
+
+    public AnimationCurve speed;
 
     public int rows = 5;
 
@@ -10,7 +13,12 @@ public class EnemiesSpawn : MonoBehaviour
 
     public float columsDistance = 4f;
 
-    public float speed = 2f;
+    public int amountKilled { get; private set; }
+
+    public int totalEnemies => this.rows * this.colums;
+
+    public float percentKilled => (float)this.amountKilled / (float)this.totalEnemies;
+
     public Vector3 rightEdge = new Vector3(32, 2, -18);
 
     public Vector3 leftEdge = new Vector3(-37, 2, -18);
@@ -29,6 +37,7 @@ public class EnemiesSpawn : MonoBehaviour
             for (int col = 0; col < this.colums; col++)
             {
                 var enemies = Instantiate(this.prefabs[row], this.transform);
+                //enemiesAlived++;
                 var position = rowPosition;
                 position.x += col * columsDistance;
                 enemies.transform.position = position;
@@ -38,7 +47,9 @@ public class EnemiesSpawn : MonoBehaviour
 
     private void Update()
     {
-        this.transform.position += _direction * this.speed * Time.deltaTime;
+       // Debug.Log("Enemies Alliwed Start " + enemiesAlived);
+
+        this.transform.position += _direction * this.speed.Evaluate(this.percentKilled) * Time.deltaTime;
 
         foreach (Transform enemies in this.transform)
         {
@@ -50,7 +61,8 @@ public class EnemiesSpawn : MonoBehaviour
             if (_direction == Vector3.right && enemies.position.x >= rightEdge.x)
             {
                 AdvanceRow();
-            } else if (_direction == Vector3.left && enemies.position.x <= leftEdge.x + 1f)
+            }
+            else if (_direction == Vector3.left && enemies.position.x <= leftEdge.x + 1f)
             {
                 AdvanceRow();
             }
@@ -65,4 +77,6 @@ public class EnemiesSpawn : MonoBehaviour
         position.y -= 1f;
         this.transform.position = position;
     }
+
+    
 }
