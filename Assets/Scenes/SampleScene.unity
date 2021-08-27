@@ -586,6 +586,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &833811858 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 833811858, guid: ba5bf430ff3968b45a9b08daf6d284d1, type: 3}
+  m_PrefabInstance: {fileID: 5155051183911563403}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,7 +1326,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4995104799286358525, guid: c4723ad217c137247a08b0249561c86f, type: 3}
       propertyPath: MissileAttackRate
-      value: 0.001
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4995104799286358525, guid: c4723ad217c137247a08b0249561c86f, type: 3}
+      propertyPath: speed.m_Curve.Array.data[0].value
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4995104799286358525, guid: c4723ad217c137247a08b0249561c86f, type: 3}
+      propertyPath: speed.m_Curve.Array.data[1].value
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4995104799286358526, guid: c4723ad217c137247a08b0249561c86f, type: 3}
       propertyPath: m_Name
@@ -1330,13 +1349,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4576266080261814183, guid: ba5bf430ff3968b45a9b08daf6d284d1, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4576266080261814183, guid: ba5bf430ff3968b45a9b08daf6d284d1, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
+    - target: {fileID: 550691818, guid: ba5bf430ff3968b45a9b08daf6d284d1, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 833811858}
+    - target: {fileID: 550691818, guid: ba5bf430ff3968b45a9b08daf6d284d1, type: 3}
+      propertyPath: startHealth
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4743552850323039027, guid: ba5bf430ff3968b45a9b08daf6d284d1, type: 3}
       propertyPath: m_RootOrder

@@ -1,15 +1,26 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     [Header("General")]
     public float speed = 5f;
-    public float health = 100f;
+    public float startHealth = 100f;
+    public float health;
 
     [Header("Use Laser")]
     public GameObject laserPrefab;
     public float fireRate = 1f;
     private float fireCountdown = 0f;
+
+    [Header("Unity Stuff")]
+    public Image healthBar;
+
+    private void Start()
+    {
+        health = startHealth;
+    }
 
     private void Update()
     {
@@ -38,6 +49,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(int amount)
     {
         health -= amount;
+
+        healthBar.fillAmount = health / startHealth;
 
         if (health <= 0)
         {

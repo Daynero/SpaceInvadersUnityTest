@@ -28,7 +28,7 @@ public class Enemies : MonoBehaviour
         PlayerStats.Score += scoreCost;
 
         GameController.enemiesDead++;
-        //this.killed.Invoke();
+
         Destroy(gameObject);
     }
 

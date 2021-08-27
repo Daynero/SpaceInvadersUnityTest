@@ -14,16 +14,6 @@ public class EnemiesController : MonoBehaviour
     public int colums = 11;
     public float columsDistance = 4f;
 
-    //public System.Action<Enemies> killed;
-
-    //public static int amountKilled = 0;
-
-    //public int totalEnemies => this.rows * this.colums;
-
-    //public int amountAlive => this.totalEnemies - amountKilled;
-
-    //public float percentKilled => (float)amountKilled / (float)this.totalEnemies;
-
     public Vector3 rightEdge = new Vector3(32, 2, -18);
 
     public Vector3 leftEdge = new Vector3(-37, 2, -18);
@@ -44,7 +34,6 @@ public class EnemiesController : MonoBehaviour
             for (int col = 0; col < this.colums; col++)
             {
                 var enemies = Instantiate(this.prefabs[row], this.transform);
-                //enemies.killed += EnemiesKilled;
                 var position = rowPosition;
                 position.x += col * columsDistance;
                 enemies.transform.position = position;
@@ -70,11 +59,6 @@ public class EnemiesController : MonoBehaviour
 
         foreach (Transform enemies in this.transform)
         {
-            //if (!enemies.gameObject.activeInHierarchy)
-            //{
-            //    continue;
-            //}
-
             if (_direction == Vector3.right && enemies.position.x >= rightEdge.x)
             {
                 AdvanceRow();
@@ -94,12 +78,6 @@ public class EnemiesController : MonoBehaviour
         position.y -= 1f;
         this.transform.position = position;
     }
-
-    //private void EnemiesKilled(Enemies enemy)
-    //{
-    //    this.amountKilled++;
-    //    this.killed(enemy);
-    //}
 
     private void MissileAttack()
     {
