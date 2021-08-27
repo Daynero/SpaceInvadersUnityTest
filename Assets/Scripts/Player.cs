@@ -4,6 +4,7 @@ public class Player : MonoBehaviour
 {
     [Header("General")]
     public float speed = 5f;
+    public float health = 100f;
 
     [Header("Use Laser")]
     public GameObject laserPrefab;
@@ -32,5 +33,20 @@ public class Player : MonoBehaviour
     private void Shoot()
     {
         var bulletGO = (GameObject)Instantiate(laserPrefab, this.transform.position, Quaternion.identity);
+    }
+
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }

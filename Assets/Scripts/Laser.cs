@@ -5,6 +5,8 @@ public class Laser : MonoBehaviour
     public float speed = 50f;
     public int damage = 5;
 
+    public System.Action destroyed;
+
     private void Update()
     {
         var distanceThisFrame = speed * Time.deltaTime;
@@ -16,11 +18,14 @@ public class Laser : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(this.gameObject);
-
-        if (other.gameObject.CompareTag("Enemy"))
+        if (!other.gameObject.CompareTag("Player"))
         {
-            Damage(other.transform);
+            Destroy(this.gameObject);
+
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                Damage(other.transform);
+            }
         }
     }
 

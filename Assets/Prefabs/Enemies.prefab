@@ -48,10 +48,34 @@ MonoBehaviour:
   - {fileID: 1089519739532913674, guid: 581e2afe07907fa4888f3184b1fd0b93, type: 3}
   - {fileID: 1089519739532913674, guid: 581e2afe07907fa4888f3184b1fd0b93, type: 3}
   - {fileID: 1089519739532913674, guid: e3106e7e73c2f3d4dbcbffa4cc34cc1c, type: 3}
-  speed: 2
+  speed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.008208823
+      value: 3
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 10
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  MissileAttackRate: 0.5
+  missilePrefab: {fileID: 1002366425524004023, guid: 1d3486652f140c843a7920c2fe825baf, type: 3}
   rows: 4
   colums: 11
   columsDistance: 4
-  enemiesAlived: 0
   rightEdge: {x: 32, y: 2, z: -18}
   leftEdge: {x: -37, y: 2, z: -18}

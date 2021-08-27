@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  enemiesController: {fileID: 4995104799286358526, guid: c4723ad217c137247a08b0249561c86f, type: 3}
+  scoreCost: 20
 --- !u!1001 &751141451219189156
 PrefabInstance:
   m_ObjectHideFlags: 0

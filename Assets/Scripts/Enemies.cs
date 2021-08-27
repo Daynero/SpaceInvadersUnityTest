@@ -4,9 +4,15 @@ public class Enemies : MonoBehaviour
 {
     [Header("General")]
     public float health = 100f;
+    public int scoreCost = 10;
+    public bool readyAttack = false;
 
-    public GameObject enemiesController;
+    public System.Action killed;
 
+    private void Update()
+    {
+        CheckMissileCollision();
+    }
     public void TakeDamage(int amount)
     {
         health -= amount;
@@ -19,10 +25,23 @@ public class Enemies : MonoBehaviour
 
     private void Die()
     {
-        //var enemyC = enemiesController.GetComponent<EnemiesController>();
-        //Debug.Log("enemyAlived = " + enemyC.enemiesAlived);
-        //Debug.Log("enemiesController = " + enemyC);
-        //enemyC.enemiesAlived--;  
+        PlayerStats.Score += scoreCost;
+
+        GameController.enemiesDead++;
+        //this.killed.Invoke();
         Destroy(gameObject);
+    }
+
+    private void CheckMissileCollision()
+    {
+        var fwd = transform.TransformDirection(new Vector3(0, -9999, 0));
+
+        readyAttack = (Physics.Raycast(transform.position, fwd, 20)) ? false : true;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position,new Vector3(0,-9999,0));
     }
 }

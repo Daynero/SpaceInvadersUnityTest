@@ -2,28 +2,35 @@ using UnityEngine;
 
 public class EnemiesController : MonoBehaviour
 {
-    [Header("Spawn Settings")]
+    [Header("Invaders")]
     public GameObject[] prefabs;
-
     public AnimationCurve speed;
+    public float MissileAttackRate = 1f;
+    public GameObject missilePrefab;
+   
 
+    [Header("Grid")]
     public int rows = 5;
-
     public int colums = 11;
-
     public float columsDistance = 4f;
 
-    public int amountKilled { get; private set; }
+    //public System.Action<Enemies> killed;
 
-    public int totalEnemies => this.rows * this.colums;
+    //public static int amountKilled = 0;
 
-    public float percentKilled => (float)this.amountKilled / (float)this.totalEnemies;
+    //public int totalEnemies => this.rows * this.colums;
+
+    //public int amountAlive => this.totalEnemies - amountKilled;
+
+    //public float percentKilled => (float)amountKilled / (float)this.totalEnemies;
 
     public Vector3 rightEdge = new Vector3(32, 2, -18);
 
     public Vector3 leftEdge = new Vector3(-37, 2, -18);
 
     private Vector3 _direction = Vector2.right;
+
+    
 
     private void Awake()
     {
@@ -37,7 +44,7 @@ public class EnemiesController : MonoBehaviour
             for (int col = 0; col < this.colums; col++)
             {
                 var enemies = Instantiate(this.prefabs[row], this.transform);
-                //enemiesAlived++;
+                //enemies.killed += EnemiesKilled;
                 var position = rowPosition;
                 position.x += col * columsDistance;
                 enemies.transform.position = position;
@@ -45,18 +52,28 @@ public class EnemiesController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        InvokeRepeating(nameof(MissileAttack), this.MissileAttackRate, this.MissileAttackRate);
+    }
+
     private void Update()
     {
-       // Debug.Log("Enemies Alliwed Start " + enemiesAlived);
+        MoveEnemies();
+    }
 
-        this.transform.position += _direction * this.speed.Evaluate(this.percentKilled) * Time.deltaTime;
+   
+
+    private void MoveEnemies()
+    {
+        this.transform.position += _direction * this.speed.Evaluate(GameController.percentKilled) * Time.deltaTime;
 
         foreach (Transform enemies in this.transform)
         {
-            if (!enemies.gameObject.activeInHierarchy)
-            {
-                continue;
-            }
+            //if (!enemies.gameObject.activeInHierarchy)
+            //{
+            //    continue;
+            //}
 
             if (_direction == Vector3.right && enemies.position.x >= rightEdge.x)
             {
@@ -76,6 +93,27 @@ public class EnemiesController : MonoBehaviour
         var position = this.transform.position;
         position.y -= 1f;
         this.transform.position = position;
+    }
+
+    //private void EnemiesKilled(Enemies enemy)
+    //{
+    //    this.amountKilled++;
+    //    this.killed(enemy);
+    //}
+
+    private void MissileAttack()
+    {
+        foreach (Transform enemies in this.transform)
+        {
+            if (Random.value < (1f / (float)GameController.amountAlive))
+            {
+                if (enemies.GetComponent<Enemies>().readyAttack)
+                {
+                    Instantiate(this.missilePrefab, enemies.position, Quaternion.identity);
+                    break;
+                }
+            }
+        }
     }
 
     
